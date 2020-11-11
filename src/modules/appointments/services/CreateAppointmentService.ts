@@ -1,28 +1,26 @@
 import { startOfHour } from 'date-fns';
-import { getCustomRepository } from 'typeorm';
 
-import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
 import Appointment from '@modules/appointments/infra/typeorm/entities/Appointment';
+
+import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 
 import AppError from '@shared/errors/AppError';
 
-interface RequestDTO {
-    providerID: string;
+interface IRequestDTO {
+    provider_id: string;
     date: Date;
 }
 
 class CreateAppointmentService {
-    public async execute({
-        providerID,
-        date,
-    }: RequestDTO): Promise<Appointment> {
-        const appointmentsRepository = getCustomRepository(
-            AppointmentsRepository,
-        );
+    constructor(private appointmentsRepository: IAppointmentsRepository) {}
 
+    public async execute({
+        provider_id,
+        date,
+    }: IRequestDTO): Promise<Appointment> {
         const appointmentDate = startOfHour(date);
 
-        const findAppointmentInSameDate = await appointmentsRepository.findByDate(
+        const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(
             appointmentDate,
         );
 
@@ -33,12 +31,10 @@ class CreateAppointmentService {
             throw new AppError({ message, statusCode });
         }
 
-        const appointment = appointmentsRepository.create({
-            providerID,
+        const appointment = this.appointmentsRepository.create({
+            provider_id,
             date: appointmentDate,
         });
-
-        await appointmentsRepository.save(appointment);
 
         return appointment;
     }
