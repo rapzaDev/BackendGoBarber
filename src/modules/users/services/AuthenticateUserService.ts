@@ -1,4 +1,3 @@
-import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { injectable, inject } from 'tsyringe';
 
@@ -6,6 +5,8 @@ import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
 
 import User from '@modules/users/infra/typeorm/entities/User';
+
+import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
@@ -19,6 +20,9 @@ class AuthenticateUserService {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
+
+        @inject('HashProvider')
+        private hashProvider: IHashProvider,
     ) {}
 
     public async execute({
@@ -34,7 +38,10 @@ class AuthenticateUserService {
             throw new AppError({ message, statusCode });
         }
 
-        const passwordMatched = await compare(password, user.password);
+        const passwordMatched = await this.hashProvider.compareHash(
+            password,
+            user.password,
+        );
 
         if (!passwordMatched) {
             throw new AppError({ message, statusCode });
