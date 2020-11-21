@@ -1,4 +1,4 @@
-interface ErrorDTO {
+interface IErrorDTO {
     message: string;
     statusCode: number;
 }
@@ -8,7 +8,7 @@ class AppError {
 
     public readonly statusCode: number;
 
-    constructor({ message, statusCode }: ErrorDTO) {
+    constructor({ message, statusCode }: IErrorDTO) {
         this.message = message;
         this.statusCode = statusCode;
     }
