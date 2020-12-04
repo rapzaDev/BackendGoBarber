@@ -42,7 +42,7 @@ class ResetPasswordService {
             throw new AppError({ message, statusCode });
         }
 
-        const tokenCreatedAt = userToken.created_at;
+        const tokenCreatedAt = userToken.createdAt;
         const compareDate = addHours(tokenCreatedAt, 2);
 
         if (isAfter(Date.now(), compareDate)) {
