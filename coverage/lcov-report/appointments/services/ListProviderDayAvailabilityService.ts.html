@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for users/services/SendForgotPasswordEmailService.ts</title>
+    <title>Code coverage report for appointments/services/ListProviderDayAvailabilityService.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">users/services</a> SendForgotPasswordEmailService.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">appointments/services</a> ListProviderDayAvailabilityService.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/63</span>
+                <span class='fraction'>0/64</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/63</span>
+                <span class='fraction'>0/64</span>
             </div>
         
             
@@ -120,7 +120,9 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -184,68 +186,69 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { injectable, inject } from 'tsyringe';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import path from 'path';</span>
+<span class="cstat-no" title="statement not covered" >import { getHours } from 'date-fns';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >// import User from '@modules/users/infra/typeorm/entities/User';</span>
-<span class="cstat-no" title="statement not covered" >import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';</span>
-<span class="cstat-no" title="statement not covered" >import IUsersRepository from '@modules/users/repositories/IUsersRepository';</span>
-<span class="cstat-no" title="statement not covered" >import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';</span>
-<span class="cstat-no" title="statement not covered" >import AppError from '@shared/errors/AppError';</span>
-<span class="cstat-no" title="statement not covered" >// import AppError from '@shared/errors/AppError';</span>
+<span class="cstat-no" title="statement not covered" >import IAppointmentsRepository from '../repositories/IAppointmentsRepository';</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >interface IRequestDTO {</span>
-<span class="cstat-no" title="statement not covered" >    email: string;</span>
+<span class="cstat-no" title="statement not covered" >    provider_id: string;</span>
+<span class="cstat-no" title="statement not covered" >    day: number;</span>
+<span class="cstat-no" title="statement not covered" >    month: number;</span>
+<span class="cstat-no" title="statement not covered" >    year: number;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >type IResponse = Array&lt;{</span>
+<span class="cstat-no" title="statement not covered" >    hour: number;</span>
+<span class="cstat-no" title="statement not covered" >    available: boolean;</span>
+<span class="cstat-no" title="statement not covered" >}&gt;;</span>
+<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >@injectable()</span>
-<span class="cstat-no" title="statement not covered" >class SendForgotPasswordEmailService {</span>
+<span class="cstat-no" title="statement not covered" >class ListProviderDayAvailabilityService {</span>
 <span class="cstat-no" title="statement not covered" >    constructor(</span>
-<span class="cstat-no" title="statement not covered" >        @inject('UsersRepository')</span>
-<span class="cstat-no" title="statement not covered" >        private usersRepository: IUsersRepository,</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        @inject('MailProvider')</span>
-<span class="cstat-no" title="statement not covered" >        private mailProvider: IMailProvider,</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        @inject('UserTokensRepository')</span>
-<span class="cstat-no" title="statement not covered" >        private userTokensRepository: IUserTokensRepository,</span>
+<span class="cstat-no" title="statement not covered" >        @inject('AppointmentsRepository')</span>
+<span class="cstat-no" title="statement not covered" >        private appointmentsRepository: IAppointmentsRepository,</span>
 <span class="cstat-no" title="statement not covered" >    ) {}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    public async execute({ email }: IRequestDTO): Promise&lt;void&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const user = await this.usersRepository.findByEmail(email);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (!user) {</span>
-<span class="cstat-no" title="statement not covered" >            const message = 'User does not exists';</span>
-<span class="cstat-no" title="statement not covered" >            const statusCode = 400;</span>
-<span class="cstat-no" title="statement not covered" >            throw new AppError({ message, statusCode });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const { token } = await this.userTokensRepository.generate(user.id);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const forgotPasswordTemplate = path.resolve(</span>
-<span class="cstat-no" title="statement not covered" >            __dirname,</span>
-<span class="cstat-no" title="statement not covered" >            '..',</span>
-<span class="cstat-no" title="statement not covered" >            'views',</span>
-<span class="cstat-no" title="statement not covered" >            'forgot_password.hbs',</span>
+<span class="cstat-no" title="statement not covered" >    public async execute({</span>
+<span class="cstat-no" title="statement not covered" >        provider_id,</span>
+<span class="cstat-no" title="statement not covered" >        day,</span>
+<span class="cstat-no" title="statement not covered" >        month,</span>
+<span class="cstat-no" title="statement not covered" >        year,</span>
+<span class="cstat-no" title="statement not covered" >    }: IRequestDTO): Promise&lt;IResponse&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        const appointments = await this.appointmentsRepository.findAllInDayFromProvider(</span>
+<span class="cstat-no" title="statement not covered" >            {</span>
+<span class="cstat-no" title="statement not covered" >                provider_id,</span>
+<span class="cstat-no" title="statement not covered" >                day,</span>
+<span class="cstat-no" title="statement not covered" >                month,</span>
+<span class="cstat-no" title="statement not covered" >                year,</span>
+<span class="cstat-no" title="statement not covered" >            },</span>
 <span class="cstat-no" title="statement not covered" >        );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        await this.mailProvider.sendMail({</span>
-<span class="cstat-no" title="statement not covered" >            to: {</span>
-<span class="cstat-no" title="statement not covered" >                name: user.name,</span>
-<span class="cstat-no" title="statement not covered" >                email: user.email,</span>
-<span class="cstat-no" title="statement not covered" >            },</span>
-<span class="cstat-no" title="statement not covered" >            subject: '[GoBarber] Password Recovery',</span>
-<span class="cstat-no" title="statement not covered" >            templateData: {</span>
-<span class="cstat-no" title="statement not covered" >                file: forgotPasswordTemplate,</span>
-<span class="cstat-no" title="statement not covered" >                variables: {</span>
-<span class="cstat-no" title="statement not covered" >                    name: user.name,</span>
-<span class="cstat-no" title="statement not covered" >                    link: `http://localhost:3000/reset_password?token=${token}`,</span>
-<span class="cstat-no" title="statement not covered" >                },</span>
-<span class="cstat-no" title="statement not covered" >            },</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
+<span class="cstat-no" title="statement not covered" >        const hourStart = 8;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        const eachHourArray = Array.from(</span>
+<span class="cstat-no" title="statement not covered" >            { length: 10 },</span>
+<span class="cstat-no" title="statement not covered" >            (_, index) =&gt; index + hourStart,</span>
+<span class="cstat-no" title="statement not covered" >        );</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        const availability = eachHourArray.map(hour =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            const hasAppointmentInHour = appointments.find(appointment =&gt;</span>
+<span class="cstat-no" title="statement not covered" >                getHours(appointment.date) === hour</span>
+<span class="cstat-no" title="statement not covered" >                );</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >            return {</span>
+<span class="cstat-no" title="statement not covered" >                hour,</span>
+<span class="cstat-no" title="statement not covered" >                availability: !hasAppointmentInHour,</span>
+<span class="cstat-no" title="statement not covered" >            }</span>
+<span class="cstat-no" title="statement not covered" >        }){</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >        return [{ hour: 8, available: true }];</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default SendForgotPasswordEmailService;</span>
+<span class="cstat-no" title="statement not covered" >export default ListProviderDayAvailabilityService;</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
