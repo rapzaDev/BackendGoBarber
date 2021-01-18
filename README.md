@@ -48,23 +48,18 @@
 </p>
 
 
-#
 ## 📖️ About
 
 This is a **REST API** for the GoBarber application to create beard cutting schedules between the barber and the client.
 
-#
 
 ## Implementation:
 
-## ----------------------------------------------------------------
 
  <h3 align="center">
  - Databases
  </h3>
  For relationship between users, I used the PostgreSQL database. To save and list the error messages for Forgot Password requests I used the MongoDB database. to increase security and avoid Brute Force and DDoS attacks I used Redis database cache to control user access.
-
-## ----------------------------------------------------------------
 
 
 
@@ -73,9 +68,7 @@ This is a **REST API** for the GoBarber application to create beard cutting sche
  </h3>
 I used the DDD Architecture Design Patterns and implemented TDD unit tests
 
-## ----------------------------------------------------------------
 
-#
 
 ## 🔨️ Tools
 
