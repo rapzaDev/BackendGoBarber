@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src ="assets/logoBackendGoBarber2.svg" />
+    <img src ="assets/logo2.svg" />
 </h1>
 
 
