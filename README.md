@@ -47,9 +47,18 @@
 </p>
 
 ## 📖️ About
+#
 
 This is a **REST API** for the GoBarber application to create beard cutting schedules between the barber and the client.
+In it the user can be both client and service provider.
+The purpose of the API is defined in the following points:
+- The user can create an account and authenticate with the application.
+- The user will be able to make an appointment with a service provider.
+- The service provider can see your schedules on a specific day and see their availability in the month.
+
+#
 ## Implementation:
+#
 
  <h3 align="center">
  - Databases
