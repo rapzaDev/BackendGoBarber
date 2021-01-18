@@ -46,43 +46,24 @@
     <img src = "assets/enviandoEmailParaBarber.gif" />
 </p>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 6d87c181a972cbe3171dd3dbe60f8ddb44dc3838
 ## 📖️ About
 
 This is a **REST API** for the GoBarber application to create beard cutting schedules between the barber and the client.
-
-<<<<<<< HEAD
 ## Implementation:
 
-=======
-
-## Implementation:
-
-
->>>>>>> 6d87c181a972cbe3171dd3dbe60f8ddb44dc3838
  <h3 align="center">
  - Databases
  </h3>
  For relationship between users, I used the PostgreSQL database. To save and list the error messages for Forgot Password requests I used the MongoDB database. to increase security and avoid Brute Force and DDoS attacks I used Redis database cache to control user access.
 
-<<<<<<< HEAD
-=======
+#
 
-
->>>>>>> 6d87c181a972cbe3171dd3dbe60f8ddb44dc3838
  <h3 align="center">
  - Domain Driver Design (DDD) & Test Driven Development (TDD)
  </h3>
 I used the DDD Architecture Design Patterns and implemented TDD unit tests
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 6d87c181a972cbe3171dd3dbe60f8ddb44dc3838
+#
 ## 🔨️ Tools
 
 - [Node](https://nodejs.org/en/)
