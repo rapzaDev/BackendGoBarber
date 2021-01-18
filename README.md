@@ -1,70 +1,94 @@
-# Recuperação de senha
-
-**RF**
-
-- O usuario deve poder recuperar sua senha informando o seu e-mail;
-- O usuario deve receber um email com instruções de recuperação de senha;
-- O usuario deve poder resetar sua senha;
-
-**RFN**
-
-- Utilizar Mailtrap para testar envios em ambiente de desenvolvimento;
-- Utilizar Amazon SES para envios em produção;
-- O envio de e-mails deve acontecer em segundo plano ( background job );
-
-**RN**
-
-- O link enviado para resetar a senha , deve expirar em 2 horas;
-- O usuario precisa confirmar a nova senha para poder resetar sua senha;
-
-# Atualização do perfil
-
-**RF**
-
-- O usuario deve poder atualizar o seu nome, e-email e senha;
-
-**RN**
-
-- O usuario não pode alterar o seu e-mail para um e-mail já utilizado;
-- Para atualizar sua senha, o usuario deve informar a antiga;
-- Para atualizar sua senha, o usuario precisa confirmar a nova senha;
-
-# Painel do prestador
-
-**RF**
-
-- O usuario deve poder listar seus agendamentos de um dia específico;
-- O prestador deve receber uma notificação sempre que houver um novo agendamento;
-- O prestador deve poder visualizar as notificações não lidas;
+<h1 align="center">
+    <img src ="assets/logoBackendGoBarber2.svg" />
+</h1>
 
 
-**RNF**
+<h1 align="center">
+    <strong>Principais Funcionalidades</strong>
+</h1>
 
-- Os agendamentos do prestador no dia devem ser armazenados em cache;
-- As notificações do prestador devem ser armazenadas no MongoDB;
-- As notificações do prestador devem ser enviadas em tempo real utilizando Socket.io;
 
-**RN**
+## Create User :
 
-- A notificação deve ter um status de lida ou não-lida para que o prestador possa controlar;
+<p>
+    <img src = "assets/criando3Users.gif" />
+    <p>PostgreSQL Database - Users</p>
+    <img src = "assets/usersNoDB.gif" />
+</p>
 
-# Agendamento de serviços
+## User Authentication :
 
-**RF**
+<p>
+    <img src = "assets/autenticacaoBarber.gif" />
+</p>
 
-- O usuario deve poder listar todos os prestadores de serviço cadastrados;
-- O usuario deve poder listar os dias de um mês com pelo menos um horario disponivel de um prestador;
-- O usuario deve poder listar os horarios disponiveis em um dia especifico de um prestador;
-- O usuario deve poder realizar um novo agendamento com um prestador;
+## Create Appointment
 
-**RFN**
+<p>
+    <img src = "assets/criacaoDeAgendamentoComBarber.gif" />
+</p>
 
-- A listagem de prestadores deve ser armazenada em cache;
+## List Daily Appointments :
 
-**RN**
+<p>
+    <img src = "assets/listandoAgendamentosBarber.gif" />
+</p>
 
-- Cada agendamento deve durar 1h exatamente;
-- Os agendamentos devem estar disponiveis entre 8h e 18h (Primeiro às 8h, ultimo as 17h);
-- O usuario não pode agendar em um horario já ocupado;
-- O usuario não pode agendar em um horario que já passou;
-- O usuario não pode agendar serviços consigo mesmo;
+## List Users :
+
+<p>
+    <img src = "assets/listandoUsuarios.gif" />
+</p>
+
+
+## Sending Forgot Password Email:
+
+<p>
+    <img src = "assets/enviandoEmailParaBarber.gif" />
+</p>
+
+
+#
+## 📖️ About
+
+This is a **REST API** for the GoBarber application to create beard cutting schedules between the barber and the client.
+
+#
+
+## Implementation:
+
+## ----------------------------------------------------------------
+
+ <h3 align="center">
+ - Databases
+ </h3>
+ For relationship between users, I used the PostgreSQL database. To save and list the error messages for Forgot Password requests I used the MongoDB database. to increase security and avoid Brute Force and DDoS attacks I used Redis database cache to control user access.
+
+## ----------------------------------------------------------------
+
+
+
+ <h3 align="center">
+ - Domain Driver Design (DDD) & Test Driven Development (TDD)
+ </h3>
+I used the DDD Architecture Design Patterns and implemented TDD unit tests
+
+## ----------------------------------------------------------------
+
+#
+
+## 🔨️ Tools
+
+- [Node](https://nodejs.org/en/)
+- [Express JS](https://expressjs.com/pt-br/)
+- [Typescript](https://www.typescriptlang.org/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [MongoDB](https://www.mongodb.com/1)
+- [Redis](https://redis.io/)
+- [Docker](https://www.docker.com/)
+- [TypeORM](https://typeorm.io/#/)
+- [ESlint](https://eslint.org/)
+- [AWS S3 & AWS SES](https://aws.amazon.com/pt/)
+
+
+
