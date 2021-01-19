@@ -58,6 +58,7 @@ class CreateAppointmentService {
 
         const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(
             appointmentDate,
+            provider_id,
         );
 
         const message = 'This appointed is already booked';
