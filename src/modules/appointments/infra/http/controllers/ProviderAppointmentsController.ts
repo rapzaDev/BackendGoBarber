@@ -15,13 +15,13 @@ export default class ProviderAppointmentsController {
             ListProviderAppointmentsService,
         );
 
-        const dailyAppointments = await listProviderAppointments.execute({
+        const appointments = await listProviderAppointments.execute({
             provider_id,
             day: Number(day),
             month: Number(month),
             year: Number(year),
         });
 
-        return response.json(dailyAppointments);
+        return response.json(appointments);
     }
 }
